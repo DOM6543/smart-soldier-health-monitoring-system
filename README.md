@@ -2,43 +2,53 @@
 
 ## 📌 Overview
 
-A low-power, cost-effective wearable system designed to monitor soldier health and safety in remote areas without internet connectivity.
+This project presents a **low-power, cost-effective wearable system** designed to monitor soldier health and safety in remote and border areas where internet connectivity is unavailable.
 
-This system uses **LoRa communication**, **edge-based decision making**, and multiple sensors to detect emergencies and transmit alerts only when necessary.
-
----
-
-## 🎯 Objectives
-
-* Monitor soldier **heart rate** in real-time
-* Detect **motion / inactivity / falls**
-* Track **GPS location during emergencies**
-* Reduce **false alerts using edge intelligence**
-* Enable communication in **no-network zones using LoRa**
-* Minimize **power consumption with event-based transmission**
+It integrates multiple sensors with **edge-based decision logic** and **LoRa communication** to transmit alerts only during emergency situations.
 
 ---
 
-## ⚙️ System Architecture
+## 🎯 Problem Statement
 
-### 🔹 Hardware Components
+Soldiers deployed in remote regions face:
 
-* ESP32 (Main Controller)
-* LoRa Module (RA-02)
-* Heart Rate Sensor (MAX30102)
-* Motion Sensor (MPU6050)
-* GPS Module (Neo-6M)
-* DHT22 (Temperature & Humidity)
+* No GSM / internet connectivity
+* Long periods without supervision
+* Undetected health emergencies
 
-### 🔹 Communication Flow
+Existing systems are:
 
-Sensor Data → ESP32 (Edge Processing) → LoRa Transmission → Receiver ESP32 → Dashboard
+* Expensive
+* Power-hungry
+* Not scalable
 
 ---
 
-## 🧠 Edge-Based Decision Logic (Simple ML)
+## 💡 Proposed Solution
 
-A rule-based decision tree runs locally on the ESP32.
+A **wearable embedded system** that:
+
+* Monitors health & motion
+* Uses **edge intelligence (decision tree)**
+* Sends alerts via **LoRa (5–10 km)**
+* Transmits data **only during emergencies**
+
+---
+
+## ⚙️ Hardware Components
+
+| Component  | Purpose                  |
+| ---------- | ------------------------ |
+| ESP32      | Main controller          |
+| MAX30102   | Heart rate sensor        |
+| MPU6050    | Motion detection         |
+| Neo-6M GPS | Location tracking        |
+| DHT22      | Temperature & humidity   |
+| LoRa RA-02 | Long-range communication |
+
+---
+
+## 🧠 Edge-Based Decision Logic
 
 ### Inputs:
 
@@ -48,78 +58,72 @@ A rule-based decision tree runs locally on the ESP32.
 * Humidity
 * Time Duration
 
-### Outputs:
+### Output States:
 
-* ✅ Normal (No transmission)
-* ⚠️ Warning (Local monitoring)
-* 🚨 Emergency (LoRa alert + GPS)
+* ✅ Normal
+* ⚠️ Warning
+* 🚨 Emergency
 
-### Example Rules:
+### Decision Rules:
 
-* High HR + High Temperature → Heat stress / Panic
-* No motion + Abnormal HR → Medical emergency
-* No motion + Normal HR → Normal (rest/guard duty)
+* HR ↑ + Temp ↑ → Heat stress
+* No motion + abnormal HR → Emergency
+* No motion + normal HR → Safe (resting)
 
 ---
 
 ## 🔋 Key Features
 
-* Event-based communication (saves power)
-* Long-range (5–10 km) LoRa transmission
-* No internet / No SIM required
-* Reduced false alarms using multi-sensor logic
+* Event-based transmission (low power)
+* No internet / SIM required
+* Long-range communication (LoRa)
+* Reduced false alerts
 * Lightweight wearable design
+
+---
+
+## 📡 System Flow
+
+```
+Sensors → ESP32 → Edge Processing → LoRa → Receiver → Dashboard
+```
 
 ---
 
 ## 🚫 Why Not GSM?
 
-* Requires network availability
-* Vulnerable in border areas
-* Needs SIM & subscription
-
-### ✔️ LoRa Advantages:
-
-* No internet required
-* Long range communication
-* Low power consumption
-* Works in remote regions
+| GSM           | LoRa          |
+| ------------- | ------------- |
+| Needs network | Works offline |
+| Requires SIM  | No SIM        |
+| High power    | Low power     |
 
 ---
 
-## 💡 Innovation
+## 📷 Prototype
 
-This project is unique because of:
+(Add your image in `/images`)
 
-* Edge-based intelligence (no cloud needed)
-* Context-aware decision making
-* Power-efficient alert system
-* Low-cost implementation (~₹3000)
+```
+![Prototype](images/prototype.jpg)
+```
 
 ---
 
-## 🔧 Current Status
+## 🔧 Project Status
 
-* Sensor integration completed ✅
-* LoRa communication setup in progress 🔄
-* Edge decision logic partially implemented ⚠️
+* Sensor Integration ✅
+* Edge Logic ⚠️ (In Progress)
+* LoRa Communication 🔄
 
 ---
 
 ## 🚀 Future Enhancements
 
 * Encrypted LoRa communication
-* Base station dashboard
+* Web dashboard
+* Solar-powered system
 * Personalized health profiles
-* Solar/kinetic energy harvesting
-
----
-
-## 📚 References
-
-* Research papers on soldier monitoring systems
-* LoRa-based communication systems
-* IoT wearable health monitoring
 
 ---
 
@@ -131,6 +135,16 @@ This project is unique because of:
 
 ---
 
-## 📌 Note
+## 📌 Conclusion
 
-This project focuses on **low-cost, low-power deployment**, not replacing high-end military systems.
+A practical, low-cost solution focusing on:
+
+* Power efficiency
+* Reliability
+* Real-world deployment
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
